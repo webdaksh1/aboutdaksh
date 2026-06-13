@@ -296,207 +296,76 @@ section:not(#hero)::before{content:'';position:absolute;top:0;left:5vw;right:5vw
 .sc:hover .sc-lbl{color:var(--amber);}
 
 /* ─── CERTIFICATES ─────────────────────────────────────────────── */
-#certificates{
-  background:var(--bg);
-  overflow:hidden;
-  padding-bottom:0 !important;
-}
-#certificates .cert-outer{
-  margin-bottom:0;
-  border-bottom-left-radius:0;
-  border-bottom-right-radius:0;
-}
-#certificates .cert-rows{
-  border-bottom-left-radius:0;
-  border-bottom-right-radius:0;
-}
-#certificates .cert-outer::before{
-  border-bottom-left-radius:0;
-  border-bottom-right-radius:0;
-}
-#certificates .runner:last-child{
-  border-bottom:none;
-  padding-bottom:0;
-}
-#certificates .sec-sub{
-  margin-bottom:1.5rem;
-}
+#certificates{background:var(--bg);overflow:hidden;}
 
-/* Glowing outer frame */
-.cert-outer{
-  position:relative;
-  border-radius:28px;
-  padding:2px;
-  background:conic-gradient(from 210deg,rgba(245,166,35,.35),rgba(168,128,245,.28) 35%,rgba(255,255,255,.04) 55%,rgba(245,166,35,.3) 75%,rgba(168,128,245,.25));
-  box-shadow:
-    0 0 0 1px rgba(245,166,35,.06),
-    0 0 60px rgba(245,166,35,.09),
-    0 0 120px rgba(168,128,245,.06);
-}
-.cert-outer::before{
-  content:'';position:absolute;inset:-4px;border-radius:32px;z-index:-1;
-  background:inherit;filter:blur(28px);opacity:.4;pointer-events:none;
-}
+.cert-section-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem;flex-wrap:wrap;gap:1.5rem;}
+.cert-count-badge{font-family:var(--display);font-size:clamp(4rem,8vw,7rem);font-weight:800;letter-spacing:-.07em;line-height:1;background:linear-gradient(135deg,var(--amber2),var(--vio2),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:.12;user-select:none;}
 
-/* Inner container */
-.cert-rows{
-  display:flex;flex-direction:column;
-  gap:0;
-  background:rgba(255,255,255,.03);
-  border-radius:26px;
-  overflow:hidden;
-}
+/* Cert grid display */
+.cert-grid-wrap{position:relative;}
 
-/* Section header row inside cert box */
-.cert-row-label{
-  display:flex;align-items:center;gap:1rem;
-  padding:.9rem 2rem;
-  border-bottom:1px solid rgba(255,255,255,.04);
-}
-.cert-row-label-text{
-  font-size:.62rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--muted);
-}
-.cert-row-label-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(245,166,35,.18),transparent);}
-.cert-row-label-count{
-  font-size:.62rem;font-weight:700;color:var(--amber);
-  background:rgba(245,166,35,.08);
-  border:1px solid rgba(245,166,35,.2);
-  border-radius:50px;padding:.15rem .6rem;
-  letter-spacing:.06em;
-}
+.cert-tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap;}
+.cert-tab{padding:.42rem 1.2rem;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.05em;border:1.5px solid var(--border);color:var(--muted);background:transparent;cursor:none;transition:all .3s var(--ease);}
+.cert-tab.active{border-color:var(--amber);color:var(--amber);background:rgba(245,166,35,.08);box-shadow:0 0 20px rgba(245,166,35,.12);}
+.cert-tab:hover:not(.active){border-color:var(--border2);color:var(--text2);}
 
-/* Marquee runner */
-.runner{
-  overflow:hidden;position:relative;
-  padding:20px 0;
-}
-.runner:not(:last-child){
-  border-bottom:1px solid rgba(255,255,255,.04);
-}
-.runner::before,.runner::after{
-  content:'';position:absolute;top:0;bottom:0;width:180px;z-index:2;pointer-events:none;
-}
-.runner::before{left:0;background:linear-gradient(90deg,var(--bg) 0%,transparent 100%);}
-.runner::after{right:0;background:linear-gradient(-90deg,var(--bg) 0%,transparent 100%);}
+/* Large featured card row */
+.cert-featured-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-bottom:1.4rem;}
+.cert-small-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
 
+/* Individual cert card */
+.cert-card{background:var(--card);border-radius:20px;border:1px solid var(--border);overflow:hidden;position:relative;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .4s;cursor:pointer;text-decoration:none;color:inherit;display:flex;flex-direction:column;}
+.cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber3),var(--amber2),var(--vio2),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease);z-index:3;}
+.cert-card:hover{transform:translateY(-10px) scale(1.01);border-color:rgba(245,166,35,.4);box-shadow:0 28px 60px rgba(0,0,0,.6),0 0 0 1px rgba(245,166,35,.12),0 0 40px rgba(245,166,35,.12);}
+.cert-card:hover::before{transform:scaleX(1);}
+
+.cert-img-zone{position:relative;overflow:hidden;height:160px;background:var(--bg3);}
+.cert-img-zone img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease),filter .5s;filter:brightness(.95) saturate(1.05);}
+.cert-card:hover .cert-img-zone img{transform:scale(1.07);filter:brightness(1.05) saturate(1.15);}
+
+.cert-img-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(6,6,15,0),rgba(6,6,15,.5));display:flex;align-items:flex-end;padding:1rem;opacity:0;transition:opacity .4s;}
+.cert-card:hover .cert-img-overlay{opacity:1;}
+.cert-img-overlay-text{font-size:.7rem;font-weight:800;letter-spacing:.14em;color:var(--amber2);text-transform:uppercase;}
+
+.cert-info{padding:1.2rem 1.4rem 1.4rem;flex:1;display:flex;flex-direction:column;gap:.55rem;}
+.cert-org-pill{display:inline-flex;align-items:center;gap:.35rem;font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--amber2);background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.18);border-radius:50px;padding:.22rem .7rem;width:fit-content;box-shadow:0 0 8px rgba(245,166,35,.08);}
+.cert-org-pill::before{content:'◆';font-size:.45rem;color:var(--amber3);}
+.cert-title{font-size:.88rem;font-weight:600;color:var(--text2);line-height:1.45;letter-spacing:-.01em;}
+.cert-meta{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-top:auto;padding-top:.6rem;border-top:1px solid var(--border);}
+.cert-year{font-size:.67rem;color:var(--muted);display:flex;align-items:center;gap:.4rem;}
+.cert-year::before{content:'';width:14px;height:1.5px;background:linear-gradient(90deg,var(--amber),var(--cyan));opacity:.65;display:inline-block;border-radius:2px;}
+.cert-verified{font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);background:rgba(63,212,118,.08);border:1px solid rgba(63,212,118,.2);padding:.12rem .5rem;border-radius:50px;}
+
+/* Scrolling cert strip at bottom */
+.cert-strip-section{margin-top:3rem;position:relative;}
+.cert-strip-label{font-size:.67rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;}
+.cert-strip-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(245,166,35,.2),transparent);}
+.runner{overflow:hidden;position:relative;padding:14px 0;}
+.runner::before,.runner::after{content:'';position:absolute;top:0;bottom:0;width:160px;z-index:2;pointer-events:none;}
+.runner::before{left:0;background:linear-gradient(90deg,var(--bg),transparent);}
+.runner::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent);}
 .ctrack{display:flex;gap:0;width:max-content;animation:slideL 34s linear infinite;}
 .ctrack.rev{animation:slideR 40s linear infinite;}
 .ctrack:hover{animation-play-state:paused;}
 @keyframes slideL{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 @keyframes slideR{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
-
-/* Certificate card */
-.cc{
-  background:var(--card);
-  min-width:250px;max-width:265px;
-  padding:0;
-  flex-shrink:0;
-  border-radius:18px;
-  border:1px solid var(--border);
-  transition:border-color .4s var(--ease),background .35s,transform .45s var(--ease),box-shadow .45s;
-  position:relative;overflow:hidden;
-  cursor:pointer;
-  margin-right:14px;
-  text-decoration:none;
-  display:block;
-  color:inherit;
-}
-
-/* Top accent bar — hidden by default, revealed on hover */
-.cc::before{
-  content:'';position:absolute;
-  top:0;left:0;right:0;height:2.5px;
-  background:linear-gradient(90deg,var(--amber3),var(--amber2),var(--vio2));
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .5s var(--ease);
-  z-index:3;
-}
-
-/* Subtle inner glow blob */
-.cc::after{
-  content:'';position:absolute;
-  bottom:-30px;right:-30px;
-  width:100px;height:100px;
-  background:radial-gradient(circle,rgba(245,166,35,.07),transparent 70%);
-  opacity:0;transition:opacity .45s;pointer-events:none;
-}
-
-.cc:hover{
-  background:var(--card2);
-  border-color:rgba(245,166,35,.32);
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 20px 50px rgba(0,0,0,.55),0 0 0 1px rgba(245,166,35,.12),0 0 30px rgba(245,166,35,.1);
-}
+/* small strip cards */
+.cc{background:var(--card);min-width:240px;max-width:260px;padding:0;flex-shrink:0;border-radius:16px;border:1px solid var(--border);transition:border-color .4s var(--ease),transform .45s var(--ease),box-shadow .45s;position:relative;overflow:hidden;cursor:pointer;margin-right:12px;text-decoration:none;display:block;color:inherit;}
+.cc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber3),var(--amber2),var(--vio2));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);z-index:3;}
+.cc:hover{background:var(--card2);border-color:rgba(245,166,35,.35);transform:translateY(-6px) scale(1.02);box-shadow:0 16px 40px rgba(0,0,0,.5),0 0 24px rgba(245,166,35,.1);}
 .cc:hover::before{transform:scaleX(1);}
-.cc:hover::after{opacity:1;}
-
-/* Card image strip */
-.cc-img-wrap{
-  width:100%;height:110px;overflow:hidden;
-  background:var(--bg3);
-  position:relative;
-  border-bottom:1px solid var(--border);
-}
-.cc-icon-img{
-  width:100%;height:100%;object-fit:cover;
-  display:block;
-  transition:transform .55s var(--ease),filter .45s;
-  filter:brightness(.95) saturate(1.05);
-}
-.cc:hover .cc-icon-img{
-  transform:scale(1.06);
-  filter:brightness(1.05) saturate(1.15);
-}
-
-/* Fallback emoji icon (used when no image) */
-.cc-icon{font-size:1.6rem;display:block;margin-bottom:.6rem;transition:transform .4s var(--ease);}
-.cc:hover .cc-icon{transform:scale(1.12);}
-
-/* Card body */
-.cc-body{padding:1.2rem 1.4rem 1.3rem;}
-
-/* Org badge */
-.cc-org{
-  display:inline-flex;align-items:center;gap:.35rem;
-  font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--amber2);
-  background:rgba(245,166,35,.08);
-  border:1px solid rgba(245,166,35,.18);
-  border-radius:50px;
-  padding:.22rem .7rem;
-  margin-bottom:.7rem;
-  box-shadow:0 0 8px rgba(245,166,35,.08);
-}
+.cc-img-wrap{width:100%;height:100px;overflow:hidden;background:var(--bg3);border-bottom:1px solid var(--border);}
+.cc-icon-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s var(--ease),filter .45s;filter:brightness(.95);}
+.cc:hover .cc-icon-img{transform:scale(1.06);filter:brightness(1.05);}
+.cc-body{padding:1rem 1.2rem 1.1rem;}
+.cc-org{display:inline-flex;align-items:center;gap:.35rem;font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--amber2);background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.18);border-radius:50px;padding:.22rem .7rem;margin-bottom:.6rem;}
 .cc-org::before{content:'◆';font-size:.45rem;color:var(--amber3);}
+.cc-title{font-size:.82rem;font-weight:600;color:var(--text2);line-height:1.4;margin-bottom:.7rem;}
+.cc-yr{font-size:.67rem;color:var(--muted);display:flex;align-items:center;justify-content:space-between;gap:.5rem;}
+.cc-yr-badge{display:flex;align-items:center;gap:.35rem;}
+.cc-yr-badge::before{content:'';width:14px;height:1.5px;background:linear-gradient(90deg,var(--amber),var(--vio2));opacity:.65;display:inline-block;border-radius:2px;}
+.cc-verified{font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);background:rgba(63,212,118,.08);border:1px solid rgba(63,212,118,.2);padding:.12rem .5rem;border-radius:50px;}
 
-/* Title */
-.cc-title{
-  font-size:.85rem;font-weight:600;color:var(--text2);
-  line-height:1.45;margin-bottom:.8rem;
-  letter-spacing:-.01em;
-}
-
-/* Year row */
-.cc-yr{
-  font-size:.67rem;color:var(--muted);
-  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
-}
-.cc-yr-badge{
-  display:flex;align-items:center;gap:.35rem;
-}
-.cc-yr-badge::before{
-  content:'';width:14px;height:1.5px;
-  background:linear-gradient(90deg,var(--amber),var(--vio2));
-  opacity:.65;display:inline-block;border-radius:2px;
-}
-.cc-verified{
-  font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:#3FD476;
-  background:rgba(63,212,118,.08);
-  border:1px solid rgba(63,212,118,.2);
-  padding:.12rem .5rem;border-radius:50px;
-}
 
 #socials{background:var(--bg2);}
 .soc-outer{position:relative;border-radius:24px;padding:1.5px;background:linear-gradient(135deg,rgba(168,128,245,.22),rgba(255,255,255,.03) 50%,rgba(245,166,35,.18));box-shadow:0 0 44px rgba(168,128,245,.06);}
@@ -871,37 +740,6 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
     <div class="proj-slider-track" id="proj-track">
 
       
-    <a href="https://aboutdaksh.vercel.app/" target="_blank" class="proj-card featured" style="text-decoration: none; color: inherit; display: block;">
-  <div class="proj-img-wrap">
-    <div class="proj-img" style="background:linear-gradient(145deg,#1a0e06,#2e1508,#1a0e06);">
-      <img src="Animated.png" alt="Creative Animated Portfolio" style="width: 100%; height: 100%; object-fit: cover;" />
-    </div>
-    <div class="proj-overlay">
-      <span class="proj-overlay-text">View Project ↗</span>
-      <span class="proj-overlay-sub">Live + Source available</span>
-    </div>
-    <div class="proj-num">01</div>
-  </div>
-  <div class="proj-body">
-    <div class="proj-tags">
-      <span class="proj-tag">React</span>
-      <span class="proj-tag gold">Firebase</span>
-      <span class="proj-tag grey">Tailwind</span>
-    </div>
-    <p class="proj-name">Creative Animated Portfolio</p>
-    <p class="proj-desc">Full-Featured Animated portfolio site with real-time Gsap, React, Typescript.</p>
-    <div class="proj-divider"></div>
-    <div class="proj-links">
-      <div class="proj-link-group">
-        <span class="proj-link pl-live">Live ↗</span>
-        <object><a href="https://github.com/webdaksh1" target="_blank" class="proj-link pl-gh">GitHub</a></object>
-      </div>
-      <div class="proj-stat">★ <span>4.9</span></div>
-    </div>
-  </div>
-</a>
-
-      
         <a href="https://daksh249062.github.io/DAKSHFRICTION/" target="_blank" class="proj-card featured" style="text-decoration: none; color: inherit; display: block;">
   <div class="proj-img-wrap">
     <div class="proj-img" style="background:linear-gradient(145deg,#1a0e06,#2e1508,#1a0e06);">
@@ -911,7 +749,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
       <span class="proj-overlay-text">View Project ↗</span>
       <span class="proj-overlay-sub">Live + Source available</span>
     </div>
-    <div class="proj-num">03</div>
+    <div class="proj-num">01</div>
   </div>
   <div class="proj-body">
     <div class="proj-tags">
@@ -941,7 +779,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
       <span class="proj-overlay-text">View Project ↗</span>
       <span class="proj-overlay-sub">Live + Source available</span>
     </div>
-    <div class="proj-num">03</div>
+    <div class="proj-num">02</div>
   </div>
   <div class="proj-body">
     <div class="proj-tags">
@@ -1001,7 +839,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
       <span class="proj-overlay-text">View Project ↗</span>
       <span class="proj-overlay-sub">Live + Source available</span>
     </div>
-    <div class="proj-num">02</div>
+    <div class="proj-num">04</div>
   </div>
   <div class="proj-body">
     <div class="proj-tags">
@@ -1009,6 +847,36 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
     </div>
     <p class="proj-name">SOCIAL HOVER</p>
     <p class="proj-desc">Full-Featured Social hover site with Html.</p>
+    <div class="proj-divider"></div>
+    <div class="proj-links">
+      <div class="proj-link-group">
+        <span class="proj-link pl-live">Live ↗</span>
+        <object><a href="https://github.com/webdaksh1" target="_blank" class="proj-link pl-gh">GitHub</a></object>
+      </div>
+      <div class="proj-stat">★ <span>4.9</span></div>
+    </div>
+  </div>
+</a>
+
+   <a href="https://aboutdaksh.vercel.app/" target="_blank" class="proj-card featured" style="text-decoration: none; color: inherit; display: block;">
+  <div class="proj-img-wrap">
+    <div class="proj-img" style="background:linear-gradient(145deg,#1a0e06,#2e1508,#1a0e06);">
+      <img src="Animated.png" alt="Creative Animated Portfolio" style="width: 100%; height: 100%; object-fit: cover;" />
+    </div>
+    <div class="proj-overlay">
+      <span class="proj-overlay-text">View Project ↗</span>
+      <span class="proj-overlay-sub">Live + Source available</span>
+    </div>
+    <div class="proj-num">0</div>
+  </div>
+  <div class="proj-body">
+    <div class="proj-tags">
+      <span class="proj-tag">React</span>
+      <span class="proj-tag gold">Firebase</span>
+      <span class="proj-tag grey">Tailwind</span>
+    </div>
+    <p class="proj-name">Creative Animated Portfolio</p>
+    <p class="proj-desc">Full-Featured Animated portfolio site with real-time Gsap, React, Typescript.</p>
     <div class="proj-divider"></div>
     <div class="proj-links">
       <div class="proj-link-group">
@@ -1090,135 +958,137 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 </section>
 
 <section id="certificates">
+  <div class="orb orb-v" style="width:400px;height:400px;top:-80px;right:-60px;"></div>
+  <div class="orb orb-c" style="width:250px;height:250px;bottom:10%;left:-40px;"></div>
   <div class="chip sr">Credentials</div>
-  <h2 class="sec-h sr" style="transition-delay:.07s">Certificates</h2>
-  <p class="sec-sub sr" style="transition-delay:.14s">Verified skills &amp; recognised achievements from top global platforms.</p>
-  <div class="cert-outer sr" style="transition-delay:.2s">
-    <div class="cert-rows">
 
-      <!-- ── Row 1: Web & Design ── -->
-      <div class="cert-row-label">
-        <span class="cert-row-label-text">Web &amp; Design</span>
-        <span class="cert-row-label-line"></span>
-        <span class="cert-row-label-count">6 certs</span>
-      </div>
-      <div class="runner">
-        <div class="ctrack">
-          <a href="cert1.png" target="_blank" class="cc">
-            <div class="cc-img-wrap"><img src="cert1.png" alt="Meta Frontend" class="cc-icon-img"></div>
-            <div class="cc-body">
-              <p class="cc-org">Codetantra</p>
-              <p class="cc-title">Codetantra Certificate</p>
-              <div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div>
-            </div>
-          </a>
-          <a href="cert2.png" target="_blank" class="cc">
-            <div class="cc-img-wrap"><img src="cert2.png" alt="Google UX Design" class="cc-icon-img"></div>
-            <div class="cc-body">
-              <p class="cc-org">Kreativan Technologies</p>
-              <p class="cc-title">Full Stack Training Certificate</p>
-              <div class="cc-yr"><span class="cc-yr-badge">2024</span><span class="cc-verified">✓ Verified</span></div>
-            </div>
-          </a>
-          <a href="cert3.png" target="_blank" class="cc">
-            <div class="cc-img-wrap"><img src="cert3.png" alt="Udemy React" class="cc-icon-img"></div>
-            <div class="cc-body">
-              <p class="cc-org">NS3EDU</p>
-              <p class="cc-title">The Complete Web Developer Course</p>
-              <div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div>
-            </div>
-          </a>
-          <!-- exact duplicates for seamless infinite loop -->
-          <a href="cert4.png" target="_blank" class="cc">
-            <div class="cc-img-wrap"><img src="cert4.png" alt="Meta Frontend" class="cc-icon-img"></div>
-            <div class="cc-body">
-              <p class="cc-org">Web Jyoti</p>
-              <p class="cc-title">Frontend Developer Professional Certificate</p>
-              <div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div>
-            </div>
-          </a>
-          <a href="cert5.png" target="_blank" class="cc">
-            <div class="cc-img-wrap"><img src="cert5.png" alt="Google UX Design" class="cc-icon-img"></div>
-            <div class="cc-body">
-              <p class="cc-org">Web Jyoti</p>
-              <p class="cc-title">Advanced Excel and Data Analytics </p>
-              <div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div>
-            </div>
-          </a>
-          <a href="cert6.jpg" target="_blank" class="cc">
-            <div class="cc-img-wrap"><img src="cert6.jpg" alt="Udemy React" class="cc-icon-img"></div>
-            <div class="cc-body">
-              <p class="cc-org">Learntube</p>
-              <p class="cc-title">The Complete React Developer Course</p>
-              <div class="cc-yr"><span class="cc-yr-badge">2022</span><span class="cc-verified">✓ Verified</span></div>
-            </div>
-          </a>
-        </div>
-      </div>
+  <div class="cert-section-top sr" style="transition-delay:.07s">
+    <div>
+      <h2 class="sec-h" style="margin-bottom:.5rem;">Certificates</h2>
+      <p class="sec-sub" style="margin-bottom:0;">Verified skills &amp; recognised achievements from top platforms.</p>
+    </div>
+    <div class="cert-count-badge">07</div>
+  </div>
 
-      <!-- ── Row 2: Cloud & AI ── -->
-      <div class="cert-row-label">
-        <span class="cert-row-label-text">Web &amp; AI</span>
-        <span class="cert-row-label-line"></span>
-        <span class="cert-row-label-count">6 certs</span>
-      </div>
-      <div class="runner">
-        <div class="ctrack rev">
-          <a href="cert1.png" target="_blank" class="cc">
-            <div class="cc-img-wrap"><img src="cert1.png" alt="Meta Frontend" class="cc-icon-img"></div>
-            <div class="cc-body">
-              <p class="cc-org">Codetantra</p>
-              <p class="cc-title">Codetantra Certificate</p>
-              <div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div>
-            </div>
-          </a>
-          <a href="cert2.png" target="_blank" class="cc">
-            <div class="cc-img-wrap"><img src="cert2.png" alt="Google UX Design" class="cc-icon-img"></div>
-            <div class="cc-body">
-              <p class="cc-org">Kreativan Technologies</p>
-              <p class="cc-title">Full Stack Training Certificate</p>
-              <div class="cc-yr"><span class="cc-yr-badge">2024</span><span class="cc-verified">✓ Verified</span></div>
-            </div>
-          </a>
-          <a href="cert3.png" target="_blank" class="cc">
-            <div class="cc-img-wrap"><img src="cert3.png" alt="Udemy React" class="cc-icon-img"></div>
-            <div class="cc-body">
-              <p class="cc-org">NS3EDU</p>
-              <p class="cc-title">The Complete Web Developer Course</p>
-              <div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div>
-            </div>
-          </a>
-          <!-- exact duplicates for seamless infinite loop -->
-          <a href="cert4.png" target="_blank" class="cc">
-            <div class="cc-img-wrap"><img src="cert4.png" alt="Meta Frontend" class="cc-icon-img"></div>
-            <div class="cc-body">
-              <p class="cc-org">Web Jyoti</p>
-              <p class="cc-title">Frontend Developer Professional Certificate</p>
-              <div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div>
-            </div>
-          </a>
-          <a href="cert5.png" target="_blank" class="cc">
-            <div class="cc-img-wrap"><img src="cert5.png" alt="Google UX Design" class="cc-icon-img"></div>
-            <div class="cc-body">
-              <p class="cc-org">Web Jyoti</p>
-              <p class="cc-title">Advanced Excel and Data Analytics </p>
-              <div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div>
-            </div>
-          </a>
-          <a href="cert6.jpg" target="_blank" class="cc">
-            <div class="cc-img-wrap"><img src="cert6.jpg" alt="Udemy React" class="cc-icon-img"></div>
-            <div class="cc-body">
-              <p class="cc-org">Learntube</p>
-              <p class="cc-title">The Complete React Developer Course</p>
-              <div class="cc-yr"><span class="cc-yr-badge">2022</span><span class="cc-verified">✓ Verified</span></div>
-            </div>
-          </a>
-        </div>
-      </div>
-          </a>
-        </div>
-      </div>
+  <!-- Grid display of all 6 certs -->
+  <div class="cert-grid-wrap sr" style="transition-delay:.16s">
+    <div class="cert-featured-row">
 
+      <a href="cert1.png" target="_blank" class="cert-card tilt">
+        <div class="cert-img-zone">
+          <img src="cert1.png" alt="Codetantra Certificate"/>
+          <div class="cert-img-overlay"><span class="cert-img-overlay-text">Open Certificate ↗</span></div>
+        </div>
+        <div class="cert-info">
+          <span class="cert-org-pill">Codetantra</span>
+          <p class="cert-title">Data &amp; File Structures — 23BA402SD2</p>
+          <div class="cert-meta">
+            <span class="cert-year">Apr 30, 2025</span>
+            <span class="cert-verified">✓ Verified</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="cert2.png" target="_blank" class="cert-card tilt">
+        <div class="cert-img-zone">
+          <img src="cert2.png" alt="Kreativan Technologies"/>
+          <div class="cert-img-overlay"><span class="cert-img-overlay-text">Open Certificate ↗</span></div>
+        </div>
+        <div class="cert-info">
+          <span class="cert-org-pill">Kreativan Technologies</span>
+          <p class="cert-title">Full Stack Training — 50+ Hours Vocational</p>
+          <div class="cert-meta">
+            <span class="cert-year">Oct 4, 2024</span>
+            <span class="cert-verified">✓ Verified</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="cert3.png" target="_blank" class="cert-card tilt">
+        <div class="cert-img-zone">
+          <img src="cert3.png" alt="NS3EDU Certificate"/>
+          <div class="cert-img-overlay"><span class="cert-img-overlay-text">Open Certificate ↗</span></div>
+        </div>
+        <div class="cert-info">
+          <span class="cert-org-pill">NS3EDU</span>
+          <p class="cert-title">Web Development — 30 Hours Training</p>
+          <div class="cert-meta">
+            <span class="cert-year">Apr 24, 2025</span>
+            <span class="cert-verified">✓ Verified</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+    <div class="cert-small-row" style="margin-top:1.4rem;">
+
+      <a href="cert4.png" target="_blank" class="cert-card tilt">
+        <div class="cert-img-zone">
+          <img src="cert4.png" alt="Webs Jyoti Certificate"/>
+          <div class="cert-img-overlay"><span class="cert-img-overlay-text">Open Certificate ↗</span></div>
+        </div>
+        <div class="cert-info">
+          <span class="cert-org-pill">Webs Jyoti</span>
+          <p class="cert-title">Web Development — 30 Hours (WJ-T-3600)</p>
+          <div class="cert-meta">
+            <span class="cert-year">Nov 2025</span>
+            <span class="cert-verified">✓ Verified</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="cert5.png" target="_blank" class="cert-card tilt">
+        <div class="cert-img-zone">
+          <img src="cert5.png" alt="Advanced Excel Certificate"/>
+          <div class="cert-img-overlay"><span class="cert-img-overlay-text">Open Certificate ↗</span></div>
+        </div>
+        <div class="cert-info">
+          <span class="cert-org-pill">Webs Jyoti</span>
+          <p class="cert-title">Advanced Excel &amp; Data Analysis (WL-1A421)</p>
+          <div class="cert-meta">
+            <span class="cert-year">Dec 1, 2025</span>
+            <span class="cert-verified">✓ Verified</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="cert6.jpg" target="_blank" class="cert-card tilt">
+        <div class="cert-img-zone">
+          <img src="cert6.jpg" alt="LearnTube Java Certificate"/>
+          <div class="cert-img-overlay"><span class="cert-img-overlay-text">Open Certificate ↗</span></div>
+        </div>
+        <div class="cert-info">
+          <span class="cert-org-pill">LearnTube.ai</span>
+          <p class="cert-title">Java Assessment — Certificate of Completion</p>
+          <div class="cert-meta">
+            <span class="cert-year">Apr 12, 2026</span>
+            <span class="cert-verified">✓ Verified</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Scrolling strip -->
+  <div class="cert-strip-section sr" style="transition-delay:.28s;">
+    <p class="cert-strip-label">All Certificates</p>
+    <div class="runner">
+      <div class="ctrack">
+        <a href="cert1.png" target="_blank" class="cc"><div class="cc-img-wrap"><img src="cert1.png" class="cc-icon-img" alt="cert1"></div><div class="cc-body"><p class="cc-org">Codetantra</p><p class="cc-title">Data &amp; File Structures</p><div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div></div></a>
+        <a href="cert2.png" target="_blank" class="cc"><div class="cc-img-wrap"><img src="cert2.png" class="cc-icon-img" alt="cert2"></div><div class="cc-body"><p class="cc-org">Kreativan Tech</p><p class="cc-title">Full Stack Training</p><div class="cc-yr"><span class="cc-yr-badge">2024</span><span class="cc-verified">✓ Verified</span></div></div></a>
+        <a href="cert3.png" target="_blank" class="cc"><div class="cc-img-wrap"><img src="cert3.png" class="cc-icon-img" alt="cert3"></div><div class="cc-body"><p class="cc-org">NS3EDU</p><p class="cc-title">Web Development</p><div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div></div></a>
+        <a href="cert4.png" target="_blank" class="cc"><div class="cc-img-wrap"><img src="cert4.png" class="cc-icon-img" alt="cert4"></div><div class="cc-body"><p class="cc-org">Webs Jyoti</p><p class="cc-title">Web Development</p><div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div></div></a>
+        <a href="cert5.png" target="_blank" class="cc"><div class="cc-img-wrap"><img src="cert5.png" class="cc-icon-img" alt="cert5"></div><div class="cc-body"><p class="cc-org">Webs Jyoti</p><p class="cc-title">Advanced Excel &amp; Data</p><div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div></div></a>
+        <a href="cert6.jpg" target="_blank" class="cc"><div class="cc-img-wrap"><img src="cert6.jpg" class="cc-icon-img" alt="cert6"></div><div class="cc-body"><p class="cc-org">LearnTube.ai</p><p class="cc-title">Java Assessment</p><div class="cc-yr"><span class="cc-yr-badge">2026</span><span class="cc-verified">✓ Verified</span></div></div></a>
+        <!-- duplicates for loop -->
+        <a href="cert1.png" target="_blank" class="cc"><div class="cc-img-wrap"><img src="cert1.png" class="cc-icon-img" alt="cert1"></div><div class="cc-body"><p class="cc-org">Codetantra</p><p class="cc-title">Data &amp; File Structures</p><div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div></div></a>
+        <a href="cert2.png" target="_blank" class="cc"><div class="cc-img-wrap"><img src="cert2.png" class="cc-icon-img" alt="cert2"></div><div class="cc-body"><p class="cc-org">Kreativan Tech</p><p class="cc-title">Full Stack Training</p><div class="cc-yr"><span class="cc-yr-badge">2024</span><span class="cc-verified">✓ Verified</span></div></div></a>
+        <a href="cert3.png" target="_blank" class="cc"><div class="cc-img-wrap"><img src="cert3.png" class="cc-icon-img" alt="cert3"></div><div class="cc-body"><p class="cc-org">NS3EDU</p><p class="cc-title">Web Development</p><div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div></div></a>
+        <a href="cert4.png" target="_blank" class="cc"><div class="cc-img-wrap"><img src="cert4.png" class="cc-icon-img" alt="cert4"></div><div class="cc-body"><p class="cc-org">Webs Jyoti</p><p class="cc-title">Web Development</p><div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div></div></a>
+        <a href="cert5.png" target="_blank" class="cc"><div class="cc-img-wrap"><img src="cert5.png" class="cc-icon-img" alt="cert5"></div><div class="cc-body"><p class="cc-org">Webs Jyoti</p><p class="cc-title">Advanced Excel &amp; Data</p><div class="cc-yr"><span class="cc-yr-badge">2025</span><span class="cc-verified">✓ Verified</span></div></div></a>
+        <a href="cert6.jpg" target="_blank" class="cc"><div class="cc-img-wrap"><img src="cert6.jpg" class="cc-icon-img" alt="cert6"></div><div class="cc-body"><p class="cc-org">LearnTube.ai</p><p class="cc-title">Java Assessment</p><div class="cc-yr"><span class="cc-yr-badge">2026</span><span class="cc-verified">✓ Verified</span></div></div></a>
+      </div>
     </div>
   </div>
 </section>
